@@ -55,7 +55,9 @@
             if (id !== undefined) args.push(id);
             if (dependencies !== undefined) args.push(dependencies);
             args.push(factory);
-            define.apply(window, args);
+            define(function(){
+                return factory();
+            });
         } else if (typeof define === "function" && define.cmd) {
             // CMD modules
             // define(id?, deps?, factory)
